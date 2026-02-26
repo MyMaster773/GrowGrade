@@ -1,0 +1,52 @@
+Which of the following is a perfect square? 
+A. 121 
+B. 150 
+C. 175 
+D. 200 
+Ans: A
+√144 = 
+A. 10 
+B. 11 
+C. 12 
+D. 13 
+Ans: CThe square of an odd number is: 
+A. Even 
+B. Odd 
+C. Prime 
+D. Zero 
+Ans: BWhich number has 49 as its square? 
+A. 6 
+B. 7 
+C. 8 
+D. 9 
+Ans: BSquare root of 0 is: 
+A. 0  
+B. 1 
+C. Undefined  
+D. −1 
+Ans: A16.Which of the following is not a perfect square? 
+A. 169 
+B. 196 
+C. 225 
+D. 250 
+Ans: D17.Square of 15 is: 
+A. 225 
+B. 215 
+C. 235 
+D. 245 
+Ans: A18.√81 + √16 = 
+A. 10 
+B. 12  
+C. 13 
+D. 15 
+Ans: A19.If n² = 144, n = 
+A. 12 
+B. −12 
+C. ±12 
+D. 0 
+Ans: C20.Square root of a negative number is: 
+A. Positive 
+B. Negative 
+C. Not defined 
+D. Zero 
+Ans: C 

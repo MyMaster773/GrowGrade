@@ -1,0 +1,60 @@
+The smallest number to be multiplied to 72 to make it a perfect square is: 
+A. 2 
+B. 3 
+C. 6 
+D. 18 
+Ans: C 
+Which number lies between 12² and 13²? 
+A. 150 
+B. 160 
+C. 165 
+D. 170 
+Ans: C 
+√0.09 = 
+A. 0.3 
+B. 0.03 
+C. 3 
+D. 0.9 
+Ans: A 
+If √x = 15, then x = 
+A. 30 
+B. 225 
+C. 15 
+D. 450 
+Ans: B 
+Which of the following is a perfect square? 
+A. 2025 
+B. 2000 
+C. 1800 
+D. 1600 
+Ans: A 
+The square of the sum of two numbers is: 
+A. a² + b² 
+B. (a + b)² 
+C. a² + 2ab + b² 
+D. Both B and C 
+Ans: D 
+√(−16) is: 
+A. 4 
+B. −4 
+C. Not a real number 
+D. 0 
+Ans: C 
+Which number has an odd number of factors? 
+A. Prime number 
+B. Composite number 
+C. Perfect square 
+D. Even number 
+Ans: C 
+If the square of a number is 169, the number is: 
+A. 13 
+B. −13 
+C. Both A and B 
+D. 0 
+Ans: C 
+The square root of 10 is: 
+A. Rational 
+B. Integer 
+C. Irrational 
+D. Whole 
+Ans: C 
