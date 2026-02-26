@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Learning Path - GrowGrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://api.fontsource.org/v1/fonts/nunito/latin-400.css" rel="stylesheet">
+    <link href="https://api.fontsource.org/v1/fonts/nunito/latin-700.css" rel="stylesheet">
+    <link href="https://api.fontsource.org/v1/fonts/nunito/latin-800.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#10B981',
+                            darkGreen: '#059669',
+                            yellow: '#FBBF24',
+                            blue: '#3B82F6',
+                            light: '#F0FDF4',
+                            purple: '#8B5CF6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            scroll-behavior: smooth;
+        }
+        .subject-card.selected {
+            border-color: #10B981;
+            background-color: #F0FDF4;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+        }
+        .module-card.selected {
+            border-color: #3B82F6;
+            background-color: #EFF6FF;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25);
+        }
+        .grade-btn.selected {
+            background-color: #10B981;
+            color: white;
+            border-color: #10B981;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 antialiased bg-gradient-to-br from-brand-light via-white to-blue-50 min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.location.href='#'">
+                    <div class="w-9 h-9 bg-brand-green rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-brand-green/30">G</div>
+                    <span class="font-extrabold text-xl text-gray-800 tracking-tight">Grow<span class="text-brand-green">Grade</span></span>
+                </div>
+                <a href="#" class="text-sm font-semibold text-gray-600 hover:text-brand-green transition">← Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Header -->
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-blue/10 text-blue-700 font-bold text-xs mb-4">
+                    Step 1 of 3
+                </div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">Choose Your Learning Path</h1>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Select your grade, subject, and module to get started with personalized lessons.</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="mb-10">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-gray-500">Grade</span>
+                    <span class="text-xs font-semibold text-gray-500">Subject</span>
+                    <span class="text-xs font-semibold text-gray-500">Module</span>
+                </div>
+                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-brand-green rounded-full transition-all duration-300" style="width: 33%"></div>
+                </div>
+            </div>
+
+            <!-- Form Container -->
+            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                
+                <!-- Step 1: Grade Selection -->
+                <div id="step-grade" class="p-6 md:p-8">
+                    <h2 class="text-xl font-bold text-gray-900 mb-6">🎓 Select Your Grade</h2>
+                    <div class="grid grid-cols-5 sm:grid-cols-10 gap-3 mb-8">
+                        <!-- Grades 1-10 -->
+                        <button type="button" class="grade-btn py-3 px-2 rounded-xl border-2 border-gray-200 font-bold text-gray-700 hover:border-brand-green hover:text-brand-green transition text-sm" data-grade="1">1st</button>
+                        <button type="button" class="grade-btn py-3 px-2 rounded-xl border-2 border-gray-200 font-bold text-gray-700 hover:border-brand-green hover:text-brand-green transition text-sm" data-grade="2">2nd</button>
+                        <button type="button" class="grade-btn py-3 px-2 rounded-xl border-2 border-gray-200 font-bold text-gray-700 hover:border-brand-green hover:text-brand-green transition text-sm" data-grade="3">3rd</button>
+                        <button type="button" class="grade-btn py-3 px-2 rounded-xl border-2 border-gray-200 font-bold text-gray-700 hover:border-brand-green hover:text-brand-green transition text-sm" data-grade="4">4th</button>
+                        <button type="button" class="grade-btn py-3 px-2 rounded-xl border-2 border-gray-200 font-bold text-gray-700 hover:border-brand-green hover:text-brand-green transition text-sm" data-grade="5">5th</button>
+                        <button type="button" class="grade-btn py-3 px-2 rounded-xl border-2 border-gray-200 font-bold text-gray-700 hover:border-brand-green hover:text-brand-green transition text-sm" data-grade="6">6th</button>
+                        <button type="button" class="grade-btn py-3 px-2 rounded-xl border-2 border-gray-200 font-bold text-gray-700 hover:border-brand-green hover:text-brand-green transition text-sm" data-grade="7">7th</button>
+                        <button type="button" class="grade-btn py-3 px-2 rounded-xl border-2 border-gray-200 font-bold text-gray-700 hover:border-brand-green hover:text-brand-green transition text-sm" data-grade="8">8th</button>
+                        <button type="button" class="grade-btn py-3 px-2 rounded-xl border-2 border-gray-200 font-bold text-gray-700 hover:border-brand-green hover:text-brand-green transition text-sm" data-grade="9">9th</button>
+                        <button type="button" class="grade-btn py-3 px-2 rounded-xl border-2 border-gray-200 font-bold text-gray-700 hover:border-brand-green hover:text-brand-green transition text-sm" data-grade="10">10th</button>
+                    </div>
+                    <div class="flex justify-end">
+                        <button id="btn-grade-next" class="px-6 py-3 bg-gray-300 text-gray-500 font-bold rounded-xl cursor-not-allowed transition" disabled>Continue →</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Subject Selection -->
+                <div id="step-subject" class="p-6 md:p-8 hidden">
+                    <h2 class="text-xl font-bold text-gray-900 mb-2">📚 Select Your Subject</h2>
+                    <p class="text-gray-500 text-sm mb-6">Grade <span id="selected-grade-display" class="font-bold text-brand-green"></span></p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                        <!-- Maths -->
+                        <label class="subject-card cursor-pointer">
+                            <input type="radio" name="subject" value="maths" class="hidden">
+                            <div class="p-5 rounded-xl border-2 border-gray-200 hover:border-brand-green transition flex items-start gap-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Mathematics</h3>
+                                    <p class="text-sm text-gray-500 mt-1">Algebra, Geometry, Numbers & more</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Physics -->
+                        <label class="subject-card cursor-pointer">
+                            <input type="radio" name="subject" value="physics" class="hidden">
+                            <div class="p-5 rounded-xl border-2 border-gray-200 hover:border-brand-green transition flex items-start gap-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Physics</h3>
+                                    <p class="text-sm text-gray-500 mt-1">Motion, Energy, Forces & Electricity</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Chemistry -->
+                        <label class="subject-card cursor-pointer">
+                            <input type="radio" name="subject" value="chemistry" class="hidden">
+                            <div class="p-5 rounded-xl border-2 border-gray-200 hover:border-brand-green transition flex items-start gap-4">
+                                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-7 h-7 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Chemistry</h3>
+                                    <p class="text-sm text-gray-500 mt-1">Atoms, Reactions, Periodic Table & Labs</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Biology -->
+                        <label class="subject-card cursor-pointer">
+                            <input type="radio" name="subject" value="biology" class="hidden">
+                            <div class="p-5 rounded-xl border-2 border-gray-200 hover:border-brand-green transition flex items-start gap-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Biology</h3>
+                                    <p class="text-sm text-gray-500 mt-1">Cells, Human Body, Plants & Ecology</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button id="btn-subject-back" class="px-6 py-3 text-gray-600 font-bold rounded-xl hover:bg-gray-100 transition">← Back</button>
+                        <button id="btn-subject-next" class="px-6 py-3 bg-gray-300 text-gray-500 font-bold rounded-xl cursor-not-allowed transition" disabled>Continue →</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Module Selection -->
+                <div id="step-module" class="p-6 md:p-8 hidden">
+                    <h2 class="text-xl font-bold text-gray-900 mb-2">📖 Select a Module</h2>
+                    <p class="text-gray-500 text-sm mb-6">
+                        Grade <span id="selected-grade-module" class="font-bold text-brand-green"></span> • 
+                        <span id="selected-subject-module" class="font-bold text-brand-blue"></span>
+                    </p>
+                    
+                    <!-- Module Options (Dynamic based on subject) -->
+                    <div id="modules-container" class="space-y-3 mb-8">
+                        <!-- Modules will be injected here by JavaScript -->
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button id="btn-module-back" class="px-6 py-3 text-gray-600 font-bold rounded-xl hover:bg-gray-100 transition">← Back</button>
+                        <button id="btn-module-start" class="px-6 py-3 bg-gray-300 text-gray-500 font-bold rounded-xl cursor-not-allowed transition" disabled>Start Learning 🚀</button>
+                    </div>
+                </div>
+
+                <!-- Success Screen -->
+                <div id="step-success" class="p-8 md:p-12 text-center hidden">
+                    <div class="w-20 h-20 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h2 class="text-2xl font-extrabold text-gray-900 mb-3">You're All Set!</h2>
+                    <p class="text-gray-600 mb-8 max-w-md mx-auto">
+                        You've selected <strong class="text-brand-green" id="success-grade"></strong> Grade, 
+                        <strong class="text-brand-blue" id="success-subject"></strong>, 
+                        Module: <strong id="success-module"></strong>
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="location.reload()" class="px-8 py-3 bg-brand-green hover:bg-brand-darkGreen text-white font-bold rounded-xl shadow-lg shadow-brand-green/30 transition">Start Learning Now</button>
+                        <button onclick="location.reload()" class="px-8 py-3 bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-200 font-bold rounded-xl transition">Choose Different</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Help Section -->
+            <div class="mt-8 text-center">
+                <p class="text-sm text-gray-500">
+                    Need help choosing? <a href="#" class="text-brand-green font-semibold hover:underline">Chat with us</a> or 
+                    <a href="#" class="text-brand-green font-semibold hover:underline">view curriculum guide</a>
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; 2024 GrowGrade Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Module data by subject
+        const modulesData = {
+            maths: [
+                { id: 'm1', title: 'Number Systems', desc: 'Whole numbers, integers, fractions & decimals', duration: '45 min' },
+                { id: 'm2', title: 'Algebra Basics', desc: 'Variables, expressions & simple equations', duration: '50 min' },
+                { id: 'm3', title: 'Geometry Fundamentals', desc: 'Shapes, angles, perimeter & area', duration: '55 min' },
+                { id: 'm4', title: 'Data Handling', desc: 'Charts, graphs, mean, median & mode', duration: '40 min' },
+                { id: 'm5', title: 'Problem Solving', desc: 'Word problems & logical reasoning', duration: '60 min' }
+            ],
+            physics: [
+                { id: 'p1', title: 'Motion & Speed', desc: 'Distance, time, velocity & acceleration', duration: '50 min' },
+                { id: 'p2', title: 'Force & Laws of Motion', desc: 'Newton\'s laws, friction & momentum', duration: '55 min' },
+                { id: 'p3', title: 'Energy & Work', desc: 'Kinetic, potential energy & power', duration: '45 min' },
+                { id: 'p4', title: 'Electricity Basics', desc: 'Circuits, current, voltage & resistance', duration: '60 min' },
+                { id: 'p5', title: 'Light & Sound', desc: 'Reflection, refraction & wave properties', duration: '50 min' }
+            ],
+            chemistry: [
+                { id: 'c1', title: 'Matter Around Us', desc: 'States of matter, properties & changes', duration: '45 min' },
+                { id: 'c2', title: 'Atoms & Molecules', desc: 'Structure, elements & compounds', duration: '55 min' },
+                { id: 'c3', title: 'Chemical Reactions', desc: 'Equations, types & balancing', duration: '60 min' },
+                { id: 'c4', title: 'Acids, Bases & Salts', desc: 'Properties, pH & everyday applications', duration: '50 min' },
+                { id: 'c5', title: 'Periodic Table Intro', desc: 'Groups, periods & element trends', duration: '50 min' }
+            ],
+            biology: [
+                { id: 'b1', title: 'Cell Structure', desc: 'Plant & animal cells, organelles & functions', duration: '50 min' },
+                { id: 'b2', title: 'Human Body Systems', desc: 'Digestive, respiratory & circulatory systems', duration: '60 min' },
+                { id: 'b3', title: 'Plant Life Processes', desc: 'Photosynthesis, respiration & transport', duration: '55 min' },
+                { id: 'b4', title: 'Reproduction', desc: 'Asexual & sexual reproduction in organisms', duration: '50 min' },
+                { id: 'b5', title: 'Ecology & Environment', desc: 'Food chains, ecosystems & conservation', duration: '45 min' }
+            ]
+        };
+
+        // State management
+        const state = {
+            grade: null,
+            subject: null,
+            module: null
+        };
+
+        // DOM Elements
+        const stepGrade = document.getElementById('step-grade');
+        const stepSubject = document.getElementById('step-subject');
+        const stepModule = document.getElementById('step-module');
+        const stepSuccess = document.getElementById('step-success');
+        const progressBar = document.getElementById('progress-bar');
+        
+        const gradeButtons = document.querySelectorAll('.grade-btn');
+        const subjectCards = document.querySelectorAll('.subject-card');
+        const btnGradeNext = document.getElementById('btn-grade-next');
+        const btnSubjectBack = document.getElementById('btn-subject-back');
+        const btnSubjectNext = document.getElementById('btn-subject-next');
+        const btnModuleBack = document.getElementById('btn-module-back');
+        const btnModuleStart = document.getElementById('btn-module-start');
+        
+        const selectedGradeDisplay = document.getElementById('selected-grade-display');
+        const selectedGradeModule = document.getElementById('selected-grade-module');
+        const selectedSubjectModule = document.getElementById('selected-subject-module');
+        const modulesContainer = document.getElementById('modules-container');
+        const successGrade = document.getElementById('success-grade');
+        const successSubject = document.getElementById('success-subject');
+        const successModule = document.getElementById('success-module');
+
+        // Grade Selection
+        gradeButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                gradeButtons.forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                state.grade = this.dataset.grade;
+                btnGradeNext.disabled = false;
+                btnGradeNext.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                btnGradeNext.classList.add('bg-brand-green', 'text-white', 'hover:bg-brand-darkGreen');
+            });
+        });
+
+        btnGradeNext.addEventListener('click', function() {
+            if (!state.grade) return;
+            selectedGradeDisplay.textContent = state.grade;
+            selectedGradeModule.textContent = state.grade;
+            stepGrade.classList.add('hidden');
+            stepSubject.classList.remove('hidden');
+            progressBar.style.width = '66%';
+        });
+
+        // Subject Selection
+        subjectCards.forEach(card => {
+            card.addEventListener('click', function() {
+                subjectCards.forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+                state.subject = radio.value;
+                btnSubjectNext.disabled = false;
+                btnSubjectNext.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                btnSubjectNext.classList.add('bg-brand-green', 'text-white', 'hover:bg-brand-darkGreen');
+            });
+        });
+
+        btnSubjectBack.addEventListener('click', function() {
+            stepSubject.classList.add('hidden');
+            stepGrade.classList.remove('hidden');
+            progressBar.style.width = '33%';
+            // Reset subject selection
+            subjectCards.forEach(c => c.classList.remove('selected'));
+            state.subject = null;
+            btnSubjectNext.disabled = true;
+            btnSubjectNext.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+            btnSubjectNext.classList.remove('bg-brand-green', 'text-white', 'hover:bg-brand-darkGreen');
+        });
+
+        btnSubjectNext.addEventListener('click', function() {
+            if (!state.subject) return;
+            selectedSubjectModule.textContent = state.subject.charAt(0).toUpperCase() + state.subject.slice(1);
+            renderModules(state.subject);
+            stepSubject.classList.add('hidden');
+            stepModule.classList.remove('hidden');
+            progressBar.style.width = '100%';
+        });
+
+        // Render Modules
+        function renderModules(subject) {
+            modulesContainer.innerHTML = '';
+            const modules = modulesData[subject] || [];
+            
+            modules.forEach(mod => {
+                const moduleCard = document.createElement('label');
+                moduleCard.className = 'module-card cursor-pointer block';
+                moduleCard.innerHTML = `
+                    <input type="radio" name="module" value="${mod.id}" class="hidden">
+                    <div class="p-4 rounded-xl border-2 border-gray-200 hover:border-brand-blue transition flex items-start gap-4">
+                        <div class="w-10 h-10 bg-brand-blue/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <svg class="w-5 h-5 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-gray-900">${mod.title}</h3>
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">${mod.duration}</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">${mod.desc}</p>
+                        </div>
+                    </div>
+                `;
+                
+                moduleCard.addEventListener('click', function() {
+                    document.querySelectorAll('.module-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    state.module = mod.title;
+                    btnModuleStart.disabled = false;
+                    btnModuleStart.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                    btnModuleStart.classList.add('bg-brand-green', 'text-white', 'hover:bg-brand-darkGreen');
+                });
+                
+                modulesContainer.appendChild(moduleCard);
+            });
+        }
+
+        // Module Navigation
+        btnModuleBack.addEventListener('click', function() {
+            stepModule.classList.add('hidden');
+            stepSubject.classList.remove('hidden');
+            progressBar.style.width = '66%';
+            // Reset module selection
+            document.querySelectorAll('.module-card').forEach(c => c.classList.remove('selected'));
+            state.module = null;
+            btnModuleStart.disabled = true;
+            btnModuleStart.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+            btnModuleStart.classList.remove('bg-brand-green', 'text-white', 'hover:bg-brand-darkGreen');
+        });
+
+        btnModuleStart.addEventListener('click', function() {
+            if (!state.module) return;
+            // Show success screen
+            successGrade.textContent = state.grade;
+            successSubject.textContent = state.subject.charAt(0).toUpperCase() + state.subject.slice(1);
+            successModule.textContent = state.module;
+            stepModule.classList.add('hidden');
+            stepSuccess.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
