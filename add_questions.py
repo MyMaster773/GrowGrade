@@ -5,24 +5,25 @@ DATABASE = os.path.join(os.path.dirname(__file__), "quiz.db")
 conn = sqlite3.connect(DATABASE)
 cursor = conn.cursor()
 
-# These must match your JS exactly for the quiz to show up!
 grade = "8"
 subject = "maths"
 module = "Algebra Basics"
-difficulty = "easy"
 
-# Format: (grade, subject, module, difficulty, question, option_a, option_b, option_c, option_d, correct_answer)
+# Let's add 5 Medium and 5 Hard questions
 questions_to_add = [
-    (grade, subject, module, difficulty, "The square of 7 is:", "14", "21", "49", "77", "C"),
-    (grade, subject, module, difficulty, "Which of the following is a perfect square?", "20", "25", "30", "35", "B"),
-    (grade, subject, module, difficulty, "Square root of 64 is:", "6", "7", "8", "9", "C"),
-    (grade, subject, module, difficulty, "1² equals:", "0", "1", "2", "-1", "B"),
-    (grade, subject, module, difficulty, "Square of an even number is:", "Odd", "Even", "Prime", "Negative", "B"),
-    (grade, subject, module, difficulty, "Square of a negative number is:", "Negative", "Positive", "Zero", "Odd", "B"),
-    (grade, subject, module, difficulty, "Which is not a perfect square?", "16", "36", "48", "81", "C"),
-    (grade, subject, module, difficulty, "The square root of 1 is:", "0", "1", "-1", "Both B and C", "D"),
-    (grade, subject, module, difficulty, "Square of 10 is:", "20", "50", "100", "1000", "C"),
-    (grade, subject, module, difficulty, "Square roots are always:", "Negative", "Positive", "Zero", "Non-negative", "D")
+    # --- MEDIUM QUESTIONS ---
+    (grade, subject, module, "medium", "If n² = 144, n =", "12", "-12", "±12", "0", "C"),
+    (grade, subject, module, "medium", "√81 + √16 =", "10", "12", "13", "15", "C"), # 9 + 4 = 13
+    (grade, subject, module, "medium", "Square of 15 is:", "225", "215", "235", "245", "A"),
+    (grade, subject, module, "medium", "Which of the following is not a perfect square?", "169", "196", "225", "250", "D"),
+    (grade, subject, module, "medium", "Square root of 0 is:", "0", "1", "Undefined", "-1", "A"),
+    
+    # --- HARD QUESTIONS ---
+    (grade, subject, module, "hard", "If √x = 15, then x =", "30", "225", "15", "450", "B"),
+    (grade, subject, module, "hard", "Which number lies between 12² and 13²?", "150", "160", "165", "170", "C"), # 144 and 169
+    (grade, subject, module, "hard", "√0.09 =", "0.3", "0.03", "3", "0.9", "A"),
+    (grade, subject, module, "hard", "The square of the sum of two numbers (a+b)² is:", "a² + b²", "(a + b)²", "a² + 2ab + b²", "Both B and C", "D"),
+    (grade, subject, module, "hard", "Which number has an odd number of factors?", "Prime number", "Composite number", "Perfect square", "Even number", "C")
 ]
 
 query = '''
@@ -33,7 +34,7 @@ query = '''
 try:
     cursor.executemany(query, questions_to_add)
     conn.commit()
-    print("Successfully added 10 correctly formatted questions!")
+    print("Successfully added Medium and Hard questions!")
 except Exception as e:
     print(f"Error: {e}")
 
