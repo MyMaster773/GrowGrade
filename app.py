@@ -30,7 +30,8 @@ def select_path():
 
     print(f"Flask received: Grade {grade}, Subject {subject}, Module {module}")
 
-    return jsonify({"status": "success", "redirect": "/lesson"}), 200
+    # for now redirect back to home; later this can point to /lesson or another page
+    return jsonify({"status": "success", "redirect": "/"}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)

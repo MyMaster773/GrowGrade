@@ -356,11 +356,42 @@
 
         btnModuleStart.addEventListener('click', function() {
             if (!state.module) return;
-            successGrade.textContent = state.grade;
-            successSubject.textContent = state.subject.charAt(0).toUpperCase() + state.subject.slice(1);
-            successModule.textContent = state.module;
-            stepModule.classList.add('hidden');
-            stepSuccess.classList.remove('hidden');
+
+            // send the selection to the Flask backend
+            fetch('/api/select-path', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    grade: state.grade,
+                    subject: state.subject,
+                    module: state.module
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success' && data.redirect) {
+                    // navigate to the next page (e.g. /lesson)
+                    window.location.href = data.redirect;
+                } else {
+                    // fallback to showing the success screen if redirect not provided
+                    successGrade.textContent = state.grade;
+                    successSubject.textContent = state.subject.charAt(0).toUpperCase() + state.subject.slice(1);
+                    successModule.textContent = state.module;
+                    stepModule.classList.add('hidden');
+                    stepSuccess.classList.remove('hidden');
+                }
+            })
+            .catch(err => {
+                console.error('Failed to send selection', err);
+                // still show success screen so user can continue
+                successGrade.textContent = state.grade;
+                successSubject.textContent = state.subject.charAt(0).toUpperCase() + state.subject.slice(1);
+                successModule.textContent = state.module;
+                stepModule.classList.add('hidden');
+                stepSuccess.classList.remove('hidden');
+            });
         });
     </script>
 </body>
