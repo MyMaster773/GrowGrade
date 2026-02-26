@@ -23,16 +23,14 @@ def get_started():
 
 @app.route('/quiz')
 def quiz_page():
-    # SECURITY: Check if selection exists in session
-    # If the user reloads, 'user_selection' might already be cleared by /api/get-quiz
+    # Security: Redirect if no selection exists or if page was reloaded
     if 'user_selection' not in session:
-        return redirect('/gs.html') # Redirect to start if session is missing
+        return redirect('/gs.html')
     return render_template('quiz.html')
 
 @app.route('/api/select-path', methods=['POST'])
 def select_path():
     data = request.get_json()
-    # Save selection to session
     session['user_selection'] = {
         'grade': str(data.get('grade')),
         'subject': str(data.get('subject')).lower(),
@@ -42,9 +40,9 @@ def select_path():
 
 @app.route('/api/get-quiz', methods=['GET'])
 def get_quiz():
-    selection = session.get('user_selection') #
+    selection = session.get('user_selection')
     if not selection:
-        return jsonify({"error": "No selection found. Please start from selection page."}), 400 #
+        return jsonify({"error": "Session expired"}), 400
 
     db = get_db()
     quiz_questions = []
@@ -60,17 +58,22 @@ def get_quiz():
     if not quiz_questions:
         return jsonify({"error": "No questions found"}), 404
 
-    # RELOAD PROTECTION: Remove selection from session after successfully fetching questions
-    # This means a reload will trigger 'not in session' in quiz_page()
-    session.pop('user_selection', None) #
-
+    # Reload protection: Clear selection from session
+    session.pop('user_selection', None)
     return jsonify(quiz_questions)
 
 @app.route('/api/save-score', methods=['POST'])
 def save_score():
     data = request.get_json()
-    # Log results to console
-    print(f"\nQUIZ COMPLETED\nFinal Score: {data.get('score')}/{data.get('total')}\n")
+    performance = data.get('performance')
+    total = data.get('total')
+
+    print("\n" + "="*30)
+    print("QUIZ COMPLETED")
+    print(f"Performance: {performance}")
+    print(f"Total Questions: {total}")
+    print("="*30 + "\n")
+    
     return jsonify({"status": "success"}), 200
 
 if __name__ == '__main__':
