@@ -1,7 +1,16 @@
+import os
 import sqlite3
 import re
 
 def parse_file(filepath, difficulty):
+    # make filepath absolute relative to this script if necessary
+    if not os.path.isabs(filepath):
+        base = os.path.dirname(__file__)
+        filepath = os.path.join(base, filepath)
+
+    if not os.path.exists(filepath):
+        raise FileNotFoundError(f"Question file not found: {filepath}")
+
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
 
@@ -28,10 +37,24 @@ def parse_file(filepath, difficulty):
     return questions
 
 
-conn = sqlite3.connect("quiz.db")
+# open the database living next to this script so we're always in the
+# same location that you inspect with the sqlite3 shell
+base = os.path.dirname(__file__)
+db_path = os.path.join(base, "quiz.db")
+conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
+# optionally, ensure the table exists before inserting
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS questions (
+        grade TEXT, subject TEXT, module TEXT, difficulty TEXT,
+        question TEXT, option_a TEXT, option_b TEXT,
+        option_c TEXT, option_d TEXT, correct_answer TEXT
+    )
+""")
+
 # Insert for maths module 5
+# files are expected to live alongside this script (GrowGrade folder)
 for difficulty, file in [
     ("hard", "hard.txt"),
     ("medium", "med.txt"),

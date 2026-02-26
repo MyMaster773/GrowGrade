@@ -1,0 +1,60 @@
+The square of 7 is: 
+A. 14 
+B. 21 
+C. 49 
+D. 77 
+Ans: C 
+Which of the following is a perfect square? 
+A. 20 
+B. 25 
+C. 30 
+D. 35 
+Ans: B 
+Square root of 64 is: 
+A. 6 
+B. 7 
+C. 8 
+D. 9 
+Ans: C 
+1² equals: 
+A. 0 
+B. 1 
+C. 2 
+D. −1 
+Ans: B 
+Square of an even number is: 
+A. Odd 
+B. Even 
+C. Prime 
+D. Negative 
+Ans: B 
+Square of a negative number is: 
+A. Negative 
+B. Positive 
+C. Zero 
+D. Odd 
+Ans: B 
+Which is not a perfect square? 
+A. 16 
+B. 36 
+C. 48 
+D. 81 
+Ans: C 
+The square root of 1 is: 
+A. 0 
+B. 1 
+C. −1 
+D. Both B and C 
+Ans: D 
+Square of 10 is: 
+A. 20 
+B. 50 
+C. 100 
+D. 1000 
+Ans: C 
+Square roots are always: 
+A. Negative 
+B. Positive 
+C. Zero 
+D. Non-negative 
+Ans: D
