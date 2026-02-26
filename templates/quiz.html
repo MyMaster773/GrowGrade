@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - GrowGrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://api.fontsource.org/v1/fonts/nunito/latin-400.css" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Nunito', 'sans-serif'] }, colors: { brand: { green: '#10B981', darkGreen: '#059669' } } } } }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans min-h-screen flex flex-col items-center justify-center p-4">
+    <div id="quiz-container" class="max-w-2xl w-full bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+        <div id="loading" class="text-center py-10">
+            <p class="text-gray-500 animate-pulse">Preparing your session...</p>
+        </div>
+
+        <div id="question-area" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                <span id="progress-text" class="text-sm font-bold text-brand-green"></span>
+                <span id="difficulty-badge" class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full uppercase"></span>
+            </div>
+            <h2 id="question-text" class="text-xl font-extrabold text-gray-900 mb-6"></h2>
+            <div id="options-grid" class="grid gap-4 mb-8"></div>
+            <button id="next-btn" class="w-full py-4 bg-brand-green text-white font-bold rounded-xl hidden">Next Question</button>
+        </div>
+
+        <div id="results-area" class="hidden text-center py-10">
+            <div class="w-20 h-20 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-2">Results Saved!</h2>
+            <p class="text-gray-600 mb-6 text-2xl">Final Score: <span id="score-display" class="font-bold text-brand-green"></span> / <span id="total-display"></span></p>
+            <button onclick="window.location.href='/gs.html'" class="px-8 py-3 bg-brand-green text-white font-bold rounded-xl">Back to Selection</button>
+        </div>
+    </div>
+
+    <script>
+        let questions = [];
+        let currentIndex = 0;
+        let score = 0;
+
+        async function loadQuiz() {
+            try {
+                const res = await fetch('/api/get-quiz'); //
+                const data = await res.json();
+                
+                // If the backend returns an error (session cleared or direct access), redirect
+                if (data.error) {
+                    window.location.href = "/gs.html";
+                    return;
+                }
+                
+                questions = data;
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('question-area').classList.remove('hidden');
+                showQuestion();
+            } catch (err) {
+                // Network errors or unexpected issues also trigger redirect
+                window.location.href = "/gs.html";
+            }
+        }
+
+        function showQuestion() {
+            const q = questions[currentIndex];
+            document.getElementById('progress-text').innerText = `Question ${currentIndex + 1} of ${questions.length}`;
+            document.getElementById('difficulty-badge').innerText = q.difficulty;
+            document.getElementById('question-text').innerText = q.question;
+            const grid = document.getElementById('options-grid');
+            grid.innerHTML = '';
+            
+            ['option_a', 'option_b', 'option_c', 'option_d'].forEach((key, idx) => {
+                const letter = String.fromCharCode(65 + idx);
+                const btn = document.createElement('button');
+                btn.className = "p-4 text-left border-2 border-gray-100 rounded-xl hover:border-brand-green transition font-semibold";
+                btn.innerText = `${letter}. ${q[key]}`;
+                btn.onclick = () => {
+                    document.querySelectorAll('#options-grid button').forEach(b => b.disabled = true);
+                    if (letter === q.correct_answer) {
+                        btn.classList.add('bg-green-50', 'border-brand-green', 'text-brand-green');
+                        score++;
+                    } else {
+                        btn.classList.add('bg-red-50', 'border-red-500', 'text-red-500');
+                    }
+                    document.getElementById('next-btn').classList.remove('hidden');
+                };
+                grid.appendChild(btn);
+            });
+        }
+
+        document.getElementById('next-btn').onclick = () => {
+            currentIndex++;
+            if (currentIndex < questions.length) {
+                showQuestion();
+                document.getElementById('next-btn').classList.add('hidden');
+            } else {
+                document.getElementById('question-area').classList.add('hidden');
+                document.getElementById('results-area').classList.remove('hidden');
+                document.getElementById('score-display').innerText = score;
+                document.getElementById('total-display').innerText = questions.length;
+                
+                // Send the completion data back to the server
+                fetch('/api/save-score', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ score: score, total: questions.length })
+                });
+            }
+        };
+
+        loadQuiz();
+    </script>
+</body>
+</html>
