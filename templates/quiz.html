@@ -127,11 +127,34 @@
 
                 document.getElementById('perf-label').innerText = performance;
 
+                // Send to backend
                 fetch('/api/save-score', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ total: questions.length, performance: performance })
                 });
+
+                // --- NEW LOCAL STORAGE SAVE BLOCK ---
+                const historyList = JSON.parse(localStorage.getItem('examHistory')) || [];
+                
+                // Get subject and module from the database response
+                const examSubject = questions.length > 0 && questions[0].subject ? questions[0].subject : 'Quiz';
+                const examModule = questions.length > 0 && questions[0].module ? questions[0].module : 'Module Review';
+
+                historyList.push({
+                    date: new Date().toLocaleDateString() + ' at ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+                    subject: examSubject, 
+                    module: examModule, 
+                    score: score,
+                    total: questions.length,
+                    performance: performance
+                });
+                
+                localStorage.setItem('examHistory', JSON.stringify(historyList));
+                // --- END NEW BLOCK ---
+                
+                // Add a "View Profile" button to see the saved score
+                container.appendChild(createActionButton("View Profile", "/profile"));
             }
         };
         loadQuiz();

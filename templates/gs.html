@@ -59,7 +59,14 @@
                     <div class="w-9 h-9 bg-brand-green rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-brand-green/30">G</div>
                     <span class="font-extrabold text-xl text-gray-800 tracking-tight">Grow<span class="text-brand-green">Grade</span></span>
                 </div>
-                <a href="/" class="text-sm font-semibold text-gray-600 hover:text-brand-green transition">← Back to Home</a>
+                
+                <div class="flex items-center gap-6">
+                    <a href="/profile" class="text-sm font-bold text-brand-green hover:text-brand-darkGreen transition flex items-center gap-1.5 bg-brand-light px-3 py-1.5 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        Profile
+                    </a>
+                    <a href="/" class="hidden sm:block text-sm font-semibold text-gray-600 hover:text-brand-green transition">← Back to Home</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -278,6 +285,29 @@ async function startLearning() {
         const successSubject = document.getElementById('success-subject');
         const successModule = document.getElementById('success-module');
 
+        // Check for saved grade on load and auto-advance
+        const savedGrade = localStorage.getItem('savedGrade');
+        if (savedGrade) {
+            // Update the state
+            state.grade = savedGrade;
+            
+            // Visually select the saved grade button
+            const savedBtn = Array.from(gradeButtons).find(b => b.dataset.grade === savedGrade);
+            if (savedBtn) {
+                savedBtn.classList.add('selected');
+                btnGradeNext.disabled = false;
+                btnGradeNext.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                btnGradeNext.classList.add('bg-brand-green', 'text-white', 'hover:bg-brand-darkGreen');
+            }
+
+            // Auto-advance directly to the subject selection step
+            selectedGradeDisplay.textContent = state.grade;
+            selectedGradeModule.textContent = state.grade;
+            stepGrade.classList.add('hidden');
+            stepSubject.classList.remove('hidden');
+            progressBar.style.width = '66%';
+        }
+
         gradeButtons.forEach(btn => {
             btn.addEventListener('click', function() {
                 gradeButtons.forEach(b => b.classList.remove('selected'));
@@ -286,6 +316,9 @@ async function startLearning() {
                 btnGradeNext.disabled = false;
                 btnGradeNext.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
                 btnGradeNext.classList.add('bg-brand-green', 'text-white', 'hover:bg-brand-darkGreen');
+                
+                // Save the selected grade to local storage
+                localStorage.setItem('savedGrade', state.grade);
             });
         });
 

@@ -13,6 +13,10 @@ def get_db():
         g.db.row_factory = sqlite3.Row
     return g.db
 
+@app.route('/profile')
+def profile_page():
+    return render_template('profile.html')
+
 @app.route('/')
 def index():
     return render_template('index.html')
