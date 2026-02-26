@@ -189,7 +189,7 @@
                         Module: <strong id="success-module"></strong>
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button onclick="location.reload()" class="px-8 py-3 bg-brand-green hover:bg-brand-darkGreen text-white font-bold rounded-xl shadow-lg shadow-brand-green/30 transition">Start Learning Now</button>
+                        <button onclick="startLearning()" class="px-8 py-3 bg-brand-green hover:bg-brand-darkGreen text-white font-bold rounded-xl shadow-lg shadow-brand-green/30 transition">Start Learning Now</button>
                         <button onclick="location.reload()" class="px-8 py-3 bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-200 font-bold rounded-xl transition">Choose Different</button>
                     </div>
                 </div>
@@ -204,10 +204,29 @@
     </footer>
 
     <script>
+async function startLearning() {
+    try {
+        const response = await fetch("/api/get-quiz");
+        const data = await response.json();
+
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+
+        console.log("Quiz received:", data);
+
+        // Example: redirect to a quiz page
+        window.location.href = "/gs.html";
+
+    } catch (error) {
+        console.error("Error fetching quiz:", error);
+    }
+}
         const modulesData = {
             maths: [
                 { id: 'm1', title: 'Number Systems', desc: 'Whole numbers, integers, fractions & decimals', duration: '45 min' },
-                { id: 'm2', title: 'Algebra Basics', desc: 'Variables, expressions & simple equations', duration: '50 min' },
+                { id: 'm2', title: '5', desc: 'Variables, expressions & simple equations', duration: '50 min' },
                 { id: 'm3', title: 'Geometry Fundamentals', desc: 'Shapes, angles, perimeter & area', duration: '55 min' },
                 { id: 'm4', title: 'Data Handling', desc: 'Charts, graphs, mean, median & mode', duration: '40 min' },
                 { id: 'm5', title: 'Problem Solving', desc: 'Word problems & logical reasoning', duration: '60 min' }
