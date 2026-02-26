@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowGrade - Excellence in Education (1st to 10th)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://api.fontsource.org/v1/fonts/nunito/latin-400.css" rel="stylesheet">
+    <link href="https://api.fontsource.org/v1/fonts/nunito/latin-700.css" rel="stylesheet">
+    <link href="https://api.fontsource.org/v1/fonts/nunito/latin-800.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#10B981',
+                            darkGreen: '#059669',
+                            yellow: '#FBBF24',
+                            blue: '#3B82F6',
+                            light: '#F0FDF4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 antialiased bg-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-10 h-10 bg-brand-green rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-green/30">G</div>
+                    <span class="font-extrabold text-2xl text-gray-800 tracking-tight">Grow<span class="text-brand-green">Grade</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#features" class="text-gray-600 hover:text-brand-green font-semibold transition">Features</a>
+                    <a href="#curriculum" class="text-gray-600 hover:text-brand-green font-semibold transition">Curriculum</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-brand-green font-semibold transition">Stories</a>
+                    <a href="#" class="px-6 py-2.5 bg-brand-green hover:bg-brand-darkGreen text-white font-bold rounded-full transition shadow-lg shadow-brand-green/30">Get Started</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2 shadow-xl">
+                <a href="#features" class="block px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:bg-brand-light hover:text-brand-green">Features</a>
+                <a href="#curriculum" class="block px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:bg-brand-light hover:text-brand-green">Curriculum</a>
+                <a href="#testimonials" class="block px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:bg-brand-light hover:text-brand-green">Stories</a>
+                <a href="#" class="block w-full text-center mt-4 px-6 py-3 bg-brand-green text-white font-bold rounded-lg">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-gradient-to-br from-brand-light via-white to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-yellow/20 text-yellow-700 font-bold text-sm mb-6">
+                        <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                        Now enrolling for 2024-25
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                        Unlocking Potential from <span class="text-brand-green relative inline-block">
+                            1st
+                            <svg class="absolute w-full h-3 -bottom-1 left-0 text-brand-yellow opacity-60" viewBox="0 0 100 10" preserveAspectRatio="none">
+                                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" />
+                            </svg>
+                        </span> to <span class="text-brand-blue relative inline-block">
+                            10th
+                            <svg class="absolute w-full h-3 -bottom-1 left-0 text-brand-yellow opacity-60" viewBox="0 0 100 10" preserveAspectRatio="none">
+                                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" />
+                            </svg>
+                        </span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        GrowGrade provides personalized, interactive learning paths designed to make education fun and effective for every child's unique pace.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#" class="px-8 py-4 bg-brand-green hover:bg-brand-darkGreen text-white font-bold rounded-xl shadow-xl shadow-brand-green/30 text-lg">
+                            Start Free Trial
+                        </a>
+                        <a href="#how-it-works" class="px-8 py-4 bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-200 font-bold rounded-xl text-lg flex items-center justify-center gap-2">
+                            <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Watch Demo
+                        </a>
+                    </div>
+                    <div class="mt-8 flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500 font-semibold">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-gray-200 border-2 border-white"></div>
+                            <div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-white"></div>
+                            <div class="w-8 h-8 rounded-full bg-gray-400 border-2 border-white"></div>
+                        </div>
+                        <p>Trusted by 5,000+ Parents</p>
+                    </div>
+                </div>
+                <div class="relative lg:h-[600px] flex items-center justify-center">
+                    <!-- Abstract Blob Background (static) -->
+                    <div class="absolute w-[500px] h-[500px] bg-brand-yellow/20 rounded-full -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                    
+                    <!-- Hero Illustration SVG -->
+                    <svg viewBox="0 0 500 500" class="w-full h-full max-w-lg drop-shadow-2xl" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Desk -->
+                        <rect x="100" y="350" width="300" height="20" rx="10" fill="#374151"/>
+                        <path d="M120 370V450M380 370V450" stroke="#374151" stroke-width="15" stroke-linecap="round"/>
+                        
+                        <!-- Laptop -->
+                        <path d="M180 250H320V350H180V250Z" fill="#E5E7EB"/>
+                        <path d="M160 350H340L320 250H180L160 350Z" fill="#D1D5DB"/>
+                        <rect x="190" y="260" width="120" height="80" rx="5" fill="#3B82F6"/>
+                        <circle cx="250" cy="300" r="20" fill="white" fill-opacity="0.3"/>
+                        <path d="M240 300L250 310L265 290" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        
+                        <!-- Kid Character -->
+                        <g transform="translate(200, 150)">
+                            <!-- Body -->
+                            <path d="M40 120C40 120 20 180 20 200H100C100 180 80 120 80 120" fill="#FCA5A5"/>
+                            <!-- Head -->
+                            <circle cx="60" cy="80" r="40" fill="#FDE047"/>
+                            <!-- Hair -->
+                            <path d="M20 80C20 50 50 30 60 30C70 30 100 50 100 80C100 60 80 40 60 40C40 40 20 60 20 80" fill="#92400E"/>
+                            <!-- Eyes -->
+                            <circle cx="50" cy="75" r="3" fill="#374151"/>
+                            <circle cx="70" cy="75" r="3" fill="#374151"/>
+                            <!-- Smile -->
+                            <path d="M50 90Q60 95 70 90" stroke="#374151" stroke-width="2" stroke-linecap="round"/>
+                            <!-- Glasses -->
+                            <circle cx="50" cy="75" r="8" stroke="#374151" stroke-width="2" fill="none"/>
+                            <circle cx="70" cy="75" r="8" stroke="#374151" stroke-width="2" fill="none"/>
+                            <line x1="58" y1="75" x2="62" y2="75" stroke="#374151" stroke-width="2"/>
+                        </g>
+
+                        <!-- Static Floating Elements -->
+                        <g>
+                            <circle cx="400" cy="150" r="30" fill="#FBBF24" fill-opacity="0.5"/>
+                            <text x="400" y="155" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="20" fill="#B45309">A+</text>
+                        </g>
+                        <g>
+                            <rect x="80" cy="180" width="40" height="40" rx="8" transform="rotate(-12 80 180)" fill="#10B981" fill-opacity="0.5"/>
+                            <text x="100" y="205" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="24" fill="#065F46">✓</text>
+                        </g>
+                        <g>
+                            <path d="M380 300L400 280L420 300L400 320Z" fill="#3B82F6" fill-opacity="0.5"/>
+                            <text x="400" y="305" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="24" fill="#1E40AF">10</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-green font-bold tracking-wide uppercase text-sm mb-2">Why GrowGrade?</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Education Evolved for the Modern Child</h3>
+                <p class="text-gray-600 text-lg">We combine traditional academic rigor with modern interactive tools to keep students engaged from 1st to 10th grade.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:shadow-brand-green/10">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Adaptive Curriculum</h4>
+                    <p class="text-gray-600 leading-relaxed">Our AI-driven platform adjusts difficulty based on the student's performance, ensuring they are always challenged but never overwhelmed.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:shadow-brand-green/10">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Gamified Learning</h4>
+                    <p class="text-gray-600 leading-relaxed">Turn homework into an adventure. Earn badges, unlock levels, and compete on leaderboards to make studying addictive in a good way.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:shadow-brand-green/10">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Parent Dashboard</h4>
+                    <p class="text-gray-600 leading-relaxed">Stay in the loop with real-time progress reports. See strengths, weaknesses, and time spent on subjects instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section id="curriculum" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900">Comprehensive Coverage</h3>
+                <p class="mt-4 text-gray-600 text-lg">From foundational skills to advanced concepts.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Primary -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="h-3 bg-brand-yellow"></div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded-full">Primary</span>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Grades 1 - 3</h4>
+                        <p class="text-gray-600 mb-6">Building strong foundations in Reading, Basic Math, and Environmental Science.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Phonics & Vocabulary
+                            </li>
+                            <li class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Number Sense
+                            </li>
+                            <li class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Creative Writing
+                            </li>
+                        </ul>
+                        <a href="#" class="block w-full py-3 text-center border border-gray-200 rounded-lg font-bold text-gray-700 hover:bg-gray-50 hover:border-gray-300">View Syllabus</a>
+                    </div>
+                </div>
+
+                <!-- Middle -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="h-3 bg-brand-green"></div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-bold rounded-full">Middle</span>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Grades 4 - 7</h4>
+                        <p class="text-gray-600 mb-6">Developing critical thinking and introducing core scientific concepts.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Advanced Arithmetic
+                            </li>
+                            <li class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Physics & Biology Basics
+                            </li>
+                            <li class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Grammar & Composition
+                            </li>
+                        </ul>
+                        <a href="#" class="block w-full py-3 text-center border border-gray-200 rounded-lg font-bold text-gray-700 hover:bg-gray-50 hover:border-gray-300">View Syllabus</a>
+                    </div>
+                </div>
+
+                <!-- High -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="h-3 bg-brand-blue"></div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full">High</span>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Grades 8 - 10</h4>
+                        <p class="text-gray-600 mb-6">Preparation for board exams with deep dives into complex subjects.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Algebra & Geometry
+                            </li>
+                            <li class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Chemistry & Physics
+                            </li>
+                            <li class="flex items-center gap-2 text-gray-700">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Exam Strategy
+                            </li>
+                        </ul>
+                        <a href="#" class="block w-full py-3 text-center border border-gray-200 rounded-lg font-bold text-gray-700 hover:bg-gray-50 hover:border-gray-300">View Syllabus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section id="testimonials" class="py-20 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900 text-center mb-16">Parents Love Us</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-brand-light p-8 rounded-2xl">
+                    <div class="flex text-yellow-400 mb-4">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"My son was struggling with Math in 5th grade. After 3 months with GrowGrade, he's actually asking to do more problems! The gamification is genius."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-bold text-gray-600">SJ</div>
+                        <div>
+                            <p class="font-bold text-gray-900">Sarah Jenkins</p>
+                            <p class="text-sm text-gray-500">Parent of 5th Grader</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-brand-light p-8 rounded-2xl">
+                    <div class="flex text-yellow-400 mb-4">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"The dashboard helps me track my daughter's progress without nagging her. It's transparent, effective, and the tutors are very responsive."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-bold text-gray-600">MR</div>
+                        <div>
+                            <p class="font-bold text-gray-900">Michael Ross</p>
+                            <p class="text-sm text-gray-500">Parent of 8th Grader</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-brand-light p-8 rounded-2xl">
+                    <div class="flex text-yellow-400 mb-4">
+                        ★★★★★
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"Best investment for my 2nd grader. The reading modules are engaging and she loves the stickers she earns. Highly recommended!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-bold text-gray-600">AL</div>
+                        <div>
+                            <p class="font-bold text-gray-900">Anita Lee</p>
+                            <p class="text-sm text-gray-500">Parent of 2nd Grader</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-brand-green rounded-3xl p-10 md:p-16 text-center shadow-2xl shadow-brand-green/40 relative overflow-hidden">
+                <!-- Decorative circles -->
+                <div class="absolute top-0 left-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+                <div class="absolute bottom-0 right-0 w-48 h-48 bg-white opacity-10 rounded-full translate-x-1/3 translate-y-1/3"></div>
+
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 relative z-10">Ready to boost their grades?</h2>
+                <p class="text-green-100 text-lg mb-8 max-w-2xl mx-auto relative z-10">Join thousands of students growing smarter every day. Start your 7-day free trial today.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+                    <a href="#" class="px-8 py-4 bg-white text-brand-green font-bold rounded-xl shadow-lg hover:bg-gray-50">Get Started Now</a>
+                    <a href="#" class="px-8 py-4 bg-brand-darkGreen text-white font-bold rounded-xl border border-brand-green hover:bg-brand-green">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-brand-green rounded flex items-center justify-center text-white font-bold text-lg">G</div>
+                        <span class="font-bold text-xl text-white">GrowGrade</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Empowering the next generation of learners with technology and care.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Platform</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-brand-green">Curriculum</a></li>
+                        <li><a href="#" class="hover:text-brand-green">Pricing</a></li>
+                        <li><a href="#" class="hover:text-brand-green">For Schools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-brand-green">About Us</a></li>
+                        <li><a href="#" class="hover:text-brand-green">Careers</a></li>
+                        <li><a href="#" class="hover:text-brand-green">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>hello@growgrade.com</li>
+                        <li>+1 (555) 123-4567</li>
+                        <li class="flex gap-4 mt-4">
+                            <a href="#" class="hover:text-white">Twitter</a>
+                            <a href="#" class="hover:text-white">Facebook</a>
+                            <a href="#" class="hover:text-white">Instagram</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2024 GrowGrade Inc. All rights reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
