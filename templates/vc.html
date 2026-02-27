@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Classes - GrowGrade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://api.fontsource.org/v1/fonts/nunito/latin-400.css" rel="stylesheet">
+    <link href="https://api.fontsource.org/v1/fonts/nunito/latin-700.css" rel="stylesheet">
+    <link href="https://api.fontsource.org/v1/fonts/nunito/latin-800.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Nunito', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            green: '#10B981', darkGreen: '#059669',
+                            yellow: '#FBBF24', blue: '#3B82F6', light: '#F0FDF4',
+                            purple: '#8B5CF6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .video-thumbnail-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 antialiased bg-gray-50 min-h-screen flex flex-col">
+
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.location.href='/'">
+                    <div class="w-9 h-9 bg-brand-green rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-brand-green/30">G</div>
+                    <span class="font-extrabold text-xl text-gray-800 tracking-tight">Grow<span class="text-brand-green">Grade</span></span>
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="/profile" class="text-sm font-bold text-gray-500 hover:text-brand-green transition flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        Profile
+                    </a>
+                    <a href="/gs.html" class="hidden sm:block text-sm font-semibold text-gray-600 hover:text-brand-green transition">← Back to Learning</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 flex-grow">
+        <div class="max-w-3xl mx-auto">
+            
+            <div class="text-center mb-10">
+                <span class="px-4 py-1.5 bg-brand-light text-brand-green font-bold text-sm rounded-full uppercase tracking-wider mb-4 inline-block">Remedial Learning</span>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Recommended Video Class 📺</h1>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Based on your recent quiz, here is a targeted review class to strengthen your understanding.</p>
+            </div>
+
+            <div id="dynamic-video-card" class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                
+                <div id="video-thumbnail" class="relative aspect-video bg-gray-200 cursor-pointer overflow-hidden" onclick="triggerVideo()">
+                    <div id="video-gradient" class="absolute inset-0 opacity-80 group-hover:scale-105 transition-transform duration-500"></div>
+                    <div class="absolute inset-0 video-thumbnail-overlay"></div>
+                    
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/50 transition-colors shadow-lg">
+                            <svg class="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute top-4 left-4">
+                        <span id="video-tag" class="px-4 py-1.5 bg-white/90 backdrop-blur-md text-sm font-bold rounded-full shadow-sm">Subject</span>
+                    </div>
+                </div>
+                
+                <div class="p-8 text-center sm:text-left">
+                    <h3 id="video-title" class="text-2xl font-extrabold text-gray-900 mb-2">Module Title</h3>
+                    <p id="video-desc" class="text-gray-500 text-base mb-6">Review the fundamental concepts of this module to boost your scores for the next attempt.</p>
+                    <button id="video-button" onclick="triggerVideo()" class="w-full sm:w-auto px-8 py-3 font-bold rounded-xl transition-colors shadow-sm text-lg">Watch Full Class</button>
+                </div>
+
+            </div>
+
+            <div class="mt-12 bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">Ready to try again?</h3>
+                    <p class="text-gray-600">Apply what you've just learned and improve your score on the module.</p>
+                </div>
+                <button onclick="window.location.href='/gs.html'" class="px-8 py-3 bg-brand-green text-white font-bold rounded-xl shadow-md hover:bg-brand-darkGreen transition shrink-0 whitespace-nowrap">
+                    Retake Quiz 🚀
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="video-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 opacity-0 transition-opacity duration-300">
+        <div class="bg-black w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl relative transform scale-95 transition-transform duration-300" id="video-container">
+            <button onclick="closeVideo()" class="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors p-2 z-50">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <span class="sr-only">Close</span>
+            </button>
+            
+            <div class="relative pt-[56.25%] w-full bg-gray-900">
+                <iframe id="video-iframe" class="absolute inset-0 w-full h-full" src="" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variable to hold the currently selected video URL
+        let currentVideoUrl = "";
+
+        // Simulated Database mapping subjects to specific video resources and UI themes
+        const videoDatabase = {
+            'maths': {
+                url: 'https://www.youtube.com/embed/NybHckSEQBI',
+                tagText: 'Mathematics',
+                tagClass: 'text-blue-700',
+                gradientClass: 'bg-gradient-to-br from-blue-400 to-indigo-600',
+                buttonClass: 'bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100'
+            },
+            'physics': {
+                url: 'https://www.youtube.com/embed/kKKM8Y-u7ds',
+                tagText: 'Physics',
+                tagClass: 'text-purple-700',
+                gradientClass: 'bg-gradient-to-br from-purple-400 to-pink-500',
+                buttonClass: 'bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100'
+            },
+            'chemistry': {
+                url: 'https://www.youtube.com/embed/URUJD5NEXC8', // Generic fallback
+                tagText: 'Chemistry',
+                tagClass: 'text-yellow-600',
+                gradientClass: 'bg-gradient-to-br from-yellow-300 to-orange-500',
+                buttonClass: 'bg-yellow-50 text-yellow-700 border border-yellow-200 hover:bg-yellow-100'
+            },
+            'biology': {
+                url: 'https://www.youtube.com/embed/URUJD5NEXC8',
+                tagText: 'Biology',
+                tagClass: 'text-green-700',
+                gradientClass: 'bg-gradient-to-br from-green-400 to-teal-600',
+                buttonClass: 'bg-green-50 text-green-700 border border-green-200 hover:bg-green-100'
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Get Exam History from LocalStorage
+            const historyList = JSON.parse(localStorage.getItem('examHistory')) || [];
+            
+            // 2. Determine the most recent subject and module
+            let recentSubject = 'maths'; // Default fallback
+            let recentModule = 'General Module';
+
+            if (historyList.length > 0) {
+                // Get the last item in the array (most recent)
+                const lastExam = historyList[historyList.length - 1];
+                recentSubject = lastExam.subject ? lastExam.subject.toLowerCase() : 'maths';
+                recentModule = lastExam.module || 'General Module';
+            }
+
+            // 3. Fetch configuration based on subject
+            const videoData = videoDatabase[recentSubject] || videoDatabase['maths'];
+            currentVideoUrl = videoData.url;
+
+            // 4. Inject Dynamic Content into the DOM
+            document.getElementById('video-tag').textContent = videoData.tagText;
+            document.getElementById('video-tag').className = `px-4 py-1.5 bg-white/90 backdrop-blur-md text-sm font-bold rounded-full shadow-sm ${videoData.tagClass}`;
+            
+            document.getElementById('video-gradient').className = `absolute inset-0 opacity-80 group-hover:scale-105 transition-transform duration-500 ${videoData.gradientClass}`;
+            
+            document.getElementById('video-title').textContent = `${videoData.tagText}: ${recentModule}`;
+            
+            document.getElementById('video-button').className = `w-full sm:w-auto px-8 py-3 font-bold rounded-xl transition-colors shadow-sm text-lg ${videoData.buttonClass}`;
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('video-modal');
+        const container = document.getElementById('video-container');
+        const iframe = document.getElementById('video-iframe');
+
+        function triggerVideo() {
+            // Append autoplay parameter to URL
+            const urlWithAutoplay = currentVideoUrl + "?autoplay=1&rel=0";
+            iframe.src = urlWithAutoplay;
+            
+            // Show modal with animation
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            }, 10);
+
+            // Prevent body scrolling
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideo() {
+            // Animate out
+            modal.classList.add('opacity-0');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+            
+            // Wait for animation to finish before hiding and clearing src
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                iframe.src = ""; // Stops the video from playing in background
+                document.body.style.overflow = ''; // Restore scrolling
+            }, 300);
+        }
+
+        // Close modal when clicking outside the video container
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeVideo();
+            }
+        });
+
+        // Close modal on Escape key press
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeVideo();
+            }
+        });
+    </script>
+</body>
+</html>

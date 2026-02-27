@@ -17,6 +17,10 @@ def get_db():
 def profile_page():
     return render_template('profile.html')
 
+@app.route('/video-classes')
+def video_classes():
+    return render_template('vc.html')
+
 @app.route('/')
 def index():
     return render_template('index.html')
