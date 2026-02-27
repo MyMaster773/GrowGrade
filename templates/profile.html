@@ -66,8 +66,17 @@
                     </div>
             </div>
 
-            <div class="text-center pt-8 border-t border-gray-200 mt-8">
-                <button id="delete-data-btn" class="px-5 py-2.5 bg-white text-gray-400 text-sm font-bold rounded-lg border border-gray-200 hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors duration-300">
+            <div class="flex flex-wrap justify-center gap-4 pt-8 border-t border-gray-200 mt-8">
+                <button id="download-data-btn" class="px-5 py-2.5 bg-white text-brand-green text-sm font-bold rounded-lg border border-brand-green hover:bg-brand-green hover:text-white transition-colors duration-300 shadow-sm">
+                    ⬇️ Download Save File
+                </button>
+                
+                <label class="px-5 py-2.5 bg-white text-brand-blue text-sm font-bold rounded-lg border border-brand-blue hover:bg-brand-blue hover:text-white transition-colors duration-300 shadow-sm cursor-pointer">
+                    ⬆️ Upload Save File
+                    <input type="file" id="upload-data-input" class="hidden" accept=".json">
+                </label>
+
+                <button id="delete-data-btn" class="px-5 py-2.5 bg-white text-gray-400 text-sm font-bold rounded-lg border border-gray-200 hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors duration-300 shadow-sm">
                     🗑️ Delete All My Data
                 </button>
             </div>
@@ -166,6 +175,74 @@
                     // Reload the page to reflect changes
                     window.location.reload();
                 }
+            });
+
+            // --- 5. Handle Download Data (Export) ---
+            const downloadBtn = document.getElementById('download-data-btn');
+            downloadBtn.addEventListener('click', () => {
+                // Gather all relevant local storage data
+                const saveData = {
+                    userName: localStorage.getItem('userName'),
+                    savedGrade: localStorage.getItem('savedGrade'),
+                    examHistory: localStorage.getItem('examHistory')
+                };
+
+                // Create a Blob from the JSON data
+                const blob = new Blob([JSON.stringify(saveData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                // Create a temporary link to trigger the download
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'growgrade_save_data.json';
+                document.body.appendChild(a);
+                a.click();
+                
+                // Cleanup
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+
+            // --- 6. Handle Upload Data (Import) ---
+            const uploadInput = document.getElementById('upload-data-input');
+            uploadInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const importedData = JSON.parse(e.target.result);
+                        
+                        // Basic validation to ensure it's a JSON object
+                        if (typeof importedData === 'object' && importedData !== null) {
+                            
+                            // Restore data if it exists in the uploaded file
+                            if (importedData.userName !== undefined && importedData.userName !== null) {
+                                localStorage.setItem('userName', importedData.userName);
+                            }
+                            if (importedData.savedGrade !== undefined && importedData.savedGrade !== null) {
+                                localStorage.setItem('savedGrade', importedData.savedGrade);
+                            }
+                            if (importedData.examHistory !== undefined && importedData.examHistory !== null) {
+                                localStorage.setItem('examHistory', importedData.examHistory);
+                            }
+                            
+                            alert('Save data loaded successfully!');
+                            window.location.reload(); // Reload to reflect new data
+                        } else {
+                            alert('Invalid save file format.');
+                        }
+                    } catch (error) {
+                        alert('Error reading save file. Please make sure it is a valid GrowGrade JSON file.');
+                        console.error('Error parsing JSON:', error);
+                    }
+                    
+                    // Reset the file input so the same file can be selected again if needed
+                    uploadInput.value = ''; 
+                };
+                
+                reader.readAsText(file);
             });
         });
     </script>
